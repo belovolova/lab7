@@ -1,33 +1,19 @@
 import numpy as np
+from time import perf_counter
 from random import randint
-import time
 
-time_start = time.perf_counter()  # замеряем время выполнения
-# создаем два массива в 1 миллион элементов, заполненных случайными значениями чисел
-m1 = []
-m2 = []
-for i in range(10000):
-    m1 = np.append(m1, randint(1, 10 ** 10))
-    m2 = np.append(m2, randint(1, 10 ** 10))
+start = perf_counter()  # определяем начальный момент времени
 
-m_result = np.multiply(m1, m2)
-print(m_result)
-print(time.perf_counter() - time_start)  # поэлементно перемножаем массивы
+array_1 = np.random.randint(1, 1000000000, 1000001)  # создаем два массива произвольных целых чисел numpy
+array_2 = np.random.randint(1, 1000000000, 1000001)
+result_array = np.multiply(array_1, array_2)  # выполняем поэлементное перемножение элементов заданных массивов
 
-# поэлементное перемножение двух массивов без использования библиотеки NumPy
-# time_start = time.perf_counter()
-# m1 = []
-# m2 = []
-# for i in range(1000000):
-#     m1.append(randint(1, 10 ** 10))
-#     m2.append(randint(1, 10 ** 10))
-# i = 0
-# m_result = []
-# while i < len(m1):
-#     c.append(m1[i] * m2[i])
-#     i += 1
-# print(m_result)
-# print(time.perf_counter() - time_start)
+# # поэлементное перемножение двух массивов без использования библиотеки NumPy
+# array_1 = [randint(1, 1000000000) for i in range(1000001)]  # создаем два массива произвольных целых чисел
+# array_2 = [randint(1, 1000000000) for i in range(1000001)]
+# result_array = []  # результирующий массив
+# length = len(array_1)  # записываем длину массивов в переменную
+# for i in range(length):
+#     result_array.append(array_1[i] * array_2[i])  # выполняем поэлементное перемножение элементов с записью в массив
 
-# сравнив время выполнения операции поэлементного перемножения двух массивов с использованием библиотеки NumPy и без использования NumPy,
-# можно сделать вывод о том, что с использованием библиотеки NumPy программа работает быстрее.
+print(perf_counter() - start)  # выводим время работы программы
